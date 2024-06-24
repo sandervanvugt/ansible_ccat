@@ -1,0 +1,12 @@
+---
+- name: test assert
+  hosts: ansible2
+  tasks:
+  - name: test assert
+    assert:
+      that:
+        - ansible_ens34 is defined
+      msg: bad luck dude
+  - name: print text is assert did not fail
+    debug:
+      msg: ens34 exists

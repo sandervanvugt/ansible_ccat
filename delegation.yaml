@@ -1,7 +1,7 @@
 ---
 - name: install start and enable httpd
   gather_facts: false
-  hosts: rocky
+  hosts: ansible1
   tasks:
   - name: install package
     package:
@@ -14,5 +14,5 @@
       enabled: yes
   - name: test httpd access
     uri:
-      url: http://rocky
+      url: http://ansible1
     delegate_to: localhost

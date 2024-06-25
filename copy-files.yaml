@@ -2,7 +2,7 @@
   hosts: ansible1
   tasks:
   - name: copy file from ansible2 to ansible1
-    synchronize:
+    copy:
       src: /etc/hosts
       dest: /tmp/hosts
       mode: push

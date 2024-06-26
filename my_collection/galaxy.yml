@@ -1,0 +1,12 @@
+namespace: my_namespace
+name: my_collection
+version: 1.0.0
+readme: README.md
+authors:
+  - Your Name <your.email@example.com>
+description: >
+  Ansible collection that includes a custom filter plugin.
+license: Apache-2.0
+dependencies: {}
+repository: 'https://github.com/your_repo/my_collection'
+documentation: 'https://github.com/your_repo/my_collection/blob/main/README.md'

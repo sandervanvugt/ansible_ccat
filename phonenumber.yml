@@ -1,0 +1,10 @@
+---
+- name: demonstrate custom filter
+  hosts: localhost
+  gather_facts: no
+  vars:
+    number: 1223456
+  tasks:
+    - debug:
+        msg: the number is {{ number | int | my_namespace.my_collection.phone_format }} 
+

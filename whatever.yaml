@@ -1,0 +1,7 @@
+---
+- name: whatever
+  gather_facts: no
+  hosts: localhost
+  tasks:
+    - debug:
+        msg: whatever, whenever

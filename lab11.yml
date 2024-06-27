@@ -14,7 +14,6 @@
         state: disabled
       - name: dns
         zone: internal
-
   tasks:
     - name: Ensure default state for services if not specified
       set_fact:
@@ -22,7 +21,6 @@
           {{
             firewall_services | map('combine', {'state': 'enabled'}, True)
           }}
-
     - name: Configure firewall services
       firewalld:
         service: "{{ item.name }}"
@@ -31,7 +29,6 @@
         immediate: yes
         permanent: yes
       loop: "{{ firewall_services }}"
-
     - name: Debug output of configured firewall services
       debug:
         msg: "Service {{ item.name }} is set to {{ item.state }} in zone {{ item.zone | default('not specified') }}"

@@ -1,18 +1,15 @@
 ---
 - name: showing map
-  hosts: all
+  hosts: ansible1
   gather_facts: no
-  become: yes
+  ignore_errors: true
   vars:
-  - basedir: /var/www/html
+    basedir: /var/www/html
   tasks:
   - name: install httpd
-    yum:
+    dnf:
       name: httpd
       state: latest
-  - name: showing basedir
-    debug:
-      var: basedir
   - name: showing files in basedir
     find:
       paths: "{{ basedir }}"
@@ -21,11 +18,6 @@
   - name: showing current variable contents to understand why we need map
     debug:
       var: basedir_files
-  - name: show files based on map attribute path without list - will show error
-    set_fact:
-      webfiles: "{{ basedir_files['files'] | map(attribute='path') }}"
-  - debug:
-      var: webfiles
   - name: show files based on map attribute with list
     set_fact:
       webfileslist: "{{ basedir_files['files'] | map(attribute='path') | list }}"
@@ -33,6 +25,6 @@
       var: webfileslist
   - name: now that we know that the list filter is mandatory, show relative file name
     set_fact:
-      webfilesrelative: "{{ basedir_files['files'] | map('relpath', basedir) | list }}"
+      webfilesrelative: "{{ webfileslist | map('relpath', basedir) | list }}"
   - debug:
       var: webfilesrelative

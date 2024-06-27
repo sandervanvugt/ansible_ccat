@@ -1,7 +1,6 @@
 ---
 - name: Configure servers with applications
-  hosts: localhost
-  gather_facts: no
+  hosts: ansible1
   vars:
     servers:
       - name: web_server
@@ -25,7 +24,7 @@
         name: "{{ item.1.name }}"
         state: "{{ item.1.state }}"
       loop: "{{ lookup('subelements', servers, 'applications') }}"
-      when: ansible_facts['distribution'] == 'CentOS'
+      when: ansible_facts['distribution'] == "CentOS"
       tags: applications
     - name: Show the configuration applied
       debug:

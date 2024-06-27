@@ -1,5 +1,6 @@
 ---
 - name: exploring network plugins and filters
+  ignore_errors: true
   hosts: all
   vars:
     addresses:
@@ -31,9 +32,6 @@
   - name: rewriting an IPv4 address to IPv6
     debug:
       msg: "{{ addresses | ipv4('ipv6') }}"
-  - name: and how about converting IP addresses to hex format
-    debug:
-      msg: "{{ ansible_facts['default_ipv4']['address'] | ip4_hex }}"
   - name: or int format
     debug:
       msg: "{{ ansible_facts['default_ipv4']['address'] | ipaddr('int') }}"

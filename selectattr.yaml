@@ -3,41 +3,35 @@
   hosts: localhost
   vars:
     users:
-      - name: Alice
+      - name: alice
         active: true
         role: admin
-      - name: Bob
+      - name: bob
         active: false
         role: user
-      - name: Charlie
+      - name: caroline
         active: true
         role: user
-      - name: Diana
+      - name: diana
         active: false
         role: guest
-
   tasks:
-    - name: Filter active users
+    - name: filter active users
       set_fact:
         active_users: "{{ users | selectattr('active', 'equalto', true) | list }}"
-    
-    - name: Display active users
+    - name: display active users
       debug:
         var: active_users
-
-    - name: Filter inactive users
+    - name: filter inactive users
       set_fact:
         inactive_users: "{{ users | selectattr('active', 'equalto', false) | list }}"
-    
-    - name: Display inactive users
+    - name: display inactive users
       debug:
         var: inactive_users
-
-    - name: Filter users by role 'user'
+    - name: filter users by role 'user'
       set_fact:
         user_role_users: "{{ users | selectattr('role', 'equalto', 'user') | list }}"
-    
-    - name: Display users with role 'user'
+    - name: display users with role 'user'
       debug:
         var: user_role_users
 

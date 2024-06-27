@@ -2,7 +2,6 @@
 - name: Configure servers with applications
   hosts: localhost
   gather_facts: no
-
   vars:
     servers:
       - name: web_server
@@ -17,12 +16,10 @@
             state: present
           - name: redis
             state: absent
-
   tasks:
     - name: Show the original list of servers and applications
       debug:
         msg: "Servers: {{ servers }}"
-
     - name: Install and configure applications on each server
       ansible.builtin.yum:
         name: "{{ item.1.name }}"
@@ -30,7 +27,6 @@
       loop: "{{ lookup('subelements', servers, 'applications') }}"
       when: ansible_facts['distribution'] == 'CentOS'
       tags: applications
-
     - name: Show the configuration applied
       debug:
         msg: "Server: {{ item.0.name }}, Application: {{ item.1.name }}, State: {{ item.1.state }}"

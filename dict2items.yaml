@@ -2,30 +2,24 @@
 - name: Demonstrate the dict2items filter
   hosts: localhost
   gather_facts: no
-
   vars:
     # Define a dictionary with some key-value pairs
     my_dict:
-      name: Anna
+      name: anna
       age: 25
       city: New York
-      occupation: Engineer
-
+      occupation: engineer
   tasks:
     - name: Show the original dictionary
       debug:
         msg: "Original dictionary: {{ my_dict }}"
-
     - name: Convert dictionary to list of items
       set_fact:
         my_dict_items: "{{ my_dict | dict2items }}"
-
     - name: Show the list of items
       debug:
         msg: "List of items: {{ my_dict_items }}"
-
     - name: Iterate over each item in the list
       debug:
         msg: "Key: {{ item.key }}, Value: {{ item.value }}"
       loop: "{{ my_dict_items }}"
-

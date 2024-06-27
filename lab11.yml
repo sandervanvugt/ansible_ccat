@@ -1,6 +1,6 @@
 ---
 - name: Configure firewall rules
-  hosts: localhost
+  hosts: ansible1
   become: yes
   vars:
     # Define services with their desired states and zones
@@ -9,7 +9,6 @@
         state: enabled
         zone: public
       - name: http
-        state: enabled
       - name: https
         state: disabled
       - name: dns
@@ -19,7 +18,7 @@
       set_fact:
         firewall_services: >-
           {{
-            firewall_services | map('combine', {'state': 'enabled'}, True)
+            firewall_services | map('combine', {'state': 'enabled'}) | list
           }}
     - name: Configure firewall services
       firewalld:

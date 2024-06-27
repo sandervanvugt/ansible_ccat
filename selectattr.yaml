@@ -1,0 +1,43 @@
+---
+- name: Example Playbook Using selectattr Filter
+  hosts: localhost
+  vars:
+    users:
+      - name: Alice
+        active: true
+        role: admin
+      - name: Bob
+        active: false
+        role: user
+      - name: Charlie
+        active: true
+        role: user
+      - name: Diana
+        active: false
+        role: guest
+
+  tasks:
+    - name: Filter active users
+      set_fact:
+        active_users: "{{ users | selectattr('active', 'equalto', true) | list }}"
+    
+    - name: Display active users
+      debug:
+        var: active_users
+
+    - name: Filter inactive users
+      set_fact:
+        inactive_users: "{{ users | selectattr('active', 'equalto', false) | list }}"
+    
+    - name: Display inactive users
+      debug:
+        var: inactive_users
+
+    - name: Filter users by role 'user'
+      set_fact:
+        user_role_users: "{{ users | selectattr('role', 'equalto', 'user') | list }}"
+    
+    - name: Display users with role 'user'
+      debug:
+        var: user_role_users
+

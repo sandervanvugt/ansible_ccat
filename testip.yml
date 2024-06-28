@@ -12,16 +12,13 @@
         type: "fixed"
       - ip: "192.168.1.13"
         type: "dynamic"
-
   tasks:
     - name: Filter only fixed IP addresses
       set_fact:
         only_fixed_addresses: "{{ all_addresses | selectattr('type', 'equalto', 'fixed') | list }}"
-
     - name: Display only fixed IP addresses
       debug:
         msg: "Fixed IP Addresses: {{ only_fixed_addresses }}"
-
     - name: Display only fixed IP addresses in a formatted way
       debug:
         msg: "IP Address: {{ item.ip }}"

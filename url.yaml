@@ -1,6 +1,6 @@
 ---
 - name: install webserver
-  hosts: ansible2
+  hosts: ansible1
   gather_facts: no
   tasks:
   - name: install httpd
@@ -31,5 +31,5 @@
   gather_facts: no
   tasks:
   - debug:
-      msg: ansible2 shows {{ lookup('url', 'http://ansible2') }}
+      msg: ansible1 shows {{ lookup('url', 'http://ansible1') }}
 

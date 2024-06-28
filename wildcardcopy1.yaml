@@ -3,5 +3,5 @@
   tasks:
   - name: trying to copy multiple files from control to host
     copy:
-      src: ~/testfiles/*
+      src: ~/ansible_ccat/*
       dest: /tmp 

@@ -6,4 +6,4 @@
     copy:
       src: "{{ item }}"
       dest: /tmp
-    loop: "{{ query('fileglob', '~/testfiles/*') }}"
+    loop: "{{ query('fileglob', '~/ansible_ccat/*') }}"
